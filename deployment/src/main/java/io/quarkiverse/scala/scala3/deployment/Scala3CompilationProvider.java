@@ -18,8 +18,8 @@ import dotty.tools.dotc.interfaces.CompilerCallback;
 import dotty.tools.dotc.interfaces.Diagnostic;
 import dotty.tools.dotc.interfaces.SimpleReporter;
 import dotty.tools.dotc.interfaces.SourceFile;
-import io.quarkus.bootstrap.model.PathsCollection;
 import io.quarkus.deployment.dev.CompilationProvider;
+import io.quarkus.paths.PathCollection;
 
 /**
  * Main.process() documentation for "dotty-interface" overload used here.
@@ -109,6 +109,7 @@ public class Scala3CompilationProvider implements CompilationProvider {
             // Run the compiler by calling dotty.tools.dotc.Main.process
             process.invoke(null, compilerArgs.toArray(String[]::new), reporter, callback);
         } catch (Exception e) {
+            e.printStackTrace();
             log.error(e.getMessage());
             log.error(e.getStackTrace());
         }
